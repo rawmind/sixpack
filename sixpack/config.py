@@ -30,6 +30,7 @@ else:
                                                                     "commentreader|twiceler"),
         'ignored_ip_addresses': os.environ.get('SIXPACK_CONFIG_IGNORE_IPS', "").split(","),
         'asset_path': os.environ.get('SIXPACK_CONFIG_ASSET_PATH', "gen"),
+        'dashboard_web_root': os.environ.get('SIXPACK_CONFIG_DASHBOARD_WEB_ROOT', "/"),
         'secret_key': os.environ.get('SIXPACK_CONFIG_SECRET', 'temp'),
         'csrf_disable': to_bool(os.environ.get('SIXPACK_CONFIG_CSRF_DISABLE', 'False')),
         'metrics': to_bool(os.environ.get('SIXPACK_METRICS', 'False')),

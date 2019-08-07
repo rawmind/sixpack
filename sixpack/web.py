@@ -8,6 +8,8 @@ from flask.ext.cors import CORS
 from flask_debugtoolbar import DebugToolbarExtension
 from markdown import markdown
 from werkzeug.contrib.fixers import ProxyFix
+from werkzeug.contrib.fixers import CGIRootFix
+from werkzeug.wsgi import DispatcherMiddleware
 
 from . import __version__
 from config import CONFIG as cfg
@@ -19,10 +21,11 @@ import utils
 import re
 
 app = Flask(__name__)
-if cfg.get('proxy_fix', False):
+if cfg.get('proxy_fix', True):
     app.wsgi_app = ProxyFix(app.wsgi_app)
 app.config['CSRF_DISABLE'] = cfg.get('csrf_disable', False)
-
+root_path=cfg.get('dashboard_web_root', '/')
+app.config["APPLICATION_ROOT"] = root_path
 csrf = SeaSurf(app)
 cors = CORS(app)
 
@@ -221,3 +224,5 @@ toolbar = DebugToolbarExtension(app)
 
 def start(environ, start_response):
     return app(environ, start_response)
+
+app.wsgi_app = DispatcherMiddleware(start, {root_path: app.wsgi_app})

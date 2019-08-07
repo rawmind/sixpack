@@ -13,7 +13,7 @@
       <link href="{{ ASSET_URL }}" rel="stylesheet">
     {% endassets %}
 
-    <link rel="icon" type"image/png" href="/static/img/favicon.png">
+    <link rel="icon" type"image/png" href="./static/img/favicon.png">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -28,9 +28,9 @@
         <div class="container">
           <a class="brand" href="/"></a>
           <ul class="nav nav-pills pull-right" id="navigation">
-            <li id="js-active-experiments"><a href="/">Active</a></li>
-            <li id="js-non-active-experiments"><a href="/paused">Paused</a></li>
-            <li id="js-non-active-experiments"><a href="/archived">Archived</a></li>
+                  <li id="js-active-experiments"><a href="{{ url_for('hello') }}">Active</a></li>
+            <li id="js-non-active-experiments"><a href="{{ url_for('paused') }}">Paused</a></li>
+            <li id="js-non-active-experiments"><a href="{{ url_for('archived') }}">Archived</a></li>
           </ul>
         </div>
       </div>
